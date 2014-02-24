@@ -24,5 +24,14 @@
 				Return all borrowed books by one member.
 			</action>
 		</release>
+		
+		<release version="1.5.0" date="2014-02-24"
+			description="Release with improve functionality">
+			<action dev="betaworblers" type="update">
+				Added Description Field to book.
+			</action>
+		</release>
+		
+		
 	</body>
 </document>
