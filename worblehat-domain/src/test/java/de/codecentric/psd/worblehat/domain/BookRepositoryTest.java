@@ -38,7 +38,7 @@ public class BookRepositoryTest {
 	@Before
 	public void setup() {
 		validAvailableBook = new Book("MyTitle", "MyAuthor", "2007",
-				"ISBN-123132-21", 2009);
+				"ISBN-123132-21", 2009, "Test Description 1");
 		bookRepository = new BookRepository();
 		MockitoAnnotations.initMocks(this);
 	}

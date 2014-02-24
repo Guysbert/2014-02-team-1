@@ -61,13 +61,14 @@ public class Book implements Serializable {
 	 *            the year
 	 */
 	public Book(String title, String author, String edition, String isbn,
-			int year) {
+			int year, String description) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.edition = edition;
 		this.isbn = isbn;
 		this.year = year;
+		this.description = description;
 	}
 
 	public long getId() {
@@ -122,11 +123,11 @@ public class Book implements Serializable {
 		this.currentBorrowing = null;
 	}
 
-	private String getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	private void setDescription(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 

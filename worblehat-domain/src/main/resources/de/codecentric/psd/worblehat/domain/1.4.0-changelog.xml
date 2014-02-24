@@ -42,9 +42,6 @@
 			<column name="currentBorrowing_id" type="bigint(20)">
 				<constraints nullable="true" />
 			</column>
-			<column name="description" type="varchar(255)">
-				<constraints nullable="true" />
-			</column>
 		</createTable>
 		<addForeignKeyConstraint constraintName="FK_BORROWING"
 			referencedTableName="Borrowing" baseColumnNames="currentBorrowing_id"
@@ -57,49 +54,42 @@
 			<column name="edition" value="" />
 			<column name="isbn" value="3551551677" />
 			<column name="year" value="1998" />
-			<column name="description" value="Test description 1" />
 		</insert>
 		<insert tableName="Book">
 			<column name="title" value="Harry Potter und die Kammer des Schreckens" />
 			<column name="edition" value="" />
 			<column name="isbn" value="3551551685" />
 			<column name="year" value="1999" />
-			<column name="description" value="Test description 2" />
 		</insert>
 		<insert tableName="Book">
 			<column name="title" value="Harry Potter und der Gefangene von Askaban" />
 			<column name="edition" value="" />
 			<column name="isbn" value="3551551693" />
 			<column name="year" value="1999" />
-			<column name="description" value="Test description 3" />
 		</insert>
 		<insert tableName="Book">
 			<column name="title" value="Harry Potter und der Feuerkelch" />
 			<column name="edition" value="" />
 			<column name="isbn" value="3551551936" />
 			<column name="year" value="2000" />
-			<column name="description" value="Test description 4" />
 		</insert>
 		<insert tableName="Book">
 			<column name="title" value="Harry Potter und der Orden des Phönix" />
 			<column name="edition" value="" />
 			<column name="isbn" value="3551555559" />
 			<column name="year" value="2003" />
-			<column name="description" value="Test description 5" />
 		</insert>
 		<insert tableName="Book">
 			<column name="title" value="Harry Potter und der Halbblutprinz" />
 			<column name="edition" value="" />
 			<column name="isbn" value="3551354065" />
 			<column name="year" value="2010" />
-			<column name="description" value="Test description 6" />
 		</insert>
 		<insert tableName="Book">
 			<column name="title" value="Harry Potter und die Heiligtümer des Todes" />
 			<column name="edition" value="" />
 			<column name="isbn" value="355155577X" />
 			<column name="year" value="2010" />
-			<column name="description" value="Test description 7" />
 		</insert>
 	</changeSet>
 

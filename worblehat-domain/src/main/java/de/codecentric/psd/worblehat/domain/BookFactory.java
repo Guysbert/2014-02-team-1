@@ -22,8 +22,8 @@ public class BookFactory {
 	};
 
 	public Book createBook(String title, String author, String edition,
-			String isbn, int year) {
-		Book book = new Book(title, author, edition, isbn, year);
+			String isbn, int year, String description) {
+		Book book = new Book(title, author, edition, isbn, year, description);
 		bookRepository.store(book);
 		return book;
 	}

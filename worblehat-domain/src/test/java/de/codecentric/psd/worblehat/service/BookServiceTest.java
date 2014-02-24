@@ -34,7 +34,7 @@ public class BookServiceTest {
 		bookService = new StandardBookService();
 		MockitoAnnotations.initMocks(this);
 		testBook = new Book("MyTitle", "MyAuthor", "2007", "ISBN-123132-21",
-				2009);
+				2009, "Test Description 4");
 		testBook.borrow("test@test.de");
 
 	}
