@@ -1,0 +1,20 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+	
+<changeSet id="1.5.0-book" author="andreas.houben">
+	<addColumn tableName="book">
+        <column name="description" type="varchar(255)"/>
+    </addColumn>
+	</changeSet>
+	
+	<changeSet id="1.5.0-testdata" author="daniel.arndt">
+		<insert tableName="Book">
+			<column name="title" value="codecentric Spring Training 1.01" />
+			<column name="edition" value="" />
+			<column name="isbn" value="45663456463" />
+			<column name="year" value="2014" />
+			<column name="description" value="cool book about a cool workshop" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

@@ -10,6 +10,11 @@
 		<relativePath>../worblehat-build</relativePath>
 	</parent>
 
+	<properties>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd_HH:mm</maven.build.timestamp.format>
+	</properties>
+
 	<name>worblehat-web</name>
 	<artifactId>worblehat-web</artifactId>
 	<packaging>war</packaging>
@@ -119,5 +124,13 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	
+	<build>
+	    <resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	            <filtering>true</filtering>
+	        </resource>
+	    </resources>
+	</build>
 </project>

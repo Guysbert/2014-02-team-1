@@ -30,8 +30,9 @@
 			<action dev="betaworblers" type="update">
 				Added Description Field to book.
 			</action>
+			<action dev="bene,felix" type="add">
+				WB126: Add build info and build date to home.jsp
+			</action>
 		</release>
-		
-		
 	</body>
 </document>
