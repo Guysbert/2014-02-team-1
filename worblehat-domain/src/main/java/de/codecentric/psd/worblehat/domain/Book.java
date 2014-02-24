@@ -34,6 +34,7 @@ public class Book implements Serializable {
 	private String edition;
 	private String isbn;
 	private int year;
+	private String description;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Borrowing currentBorrowing;
@@ -119,6 +120,14 @@ public class Book implements Serializable {
 	 */
 	public void returnBook() {
 		this.currentBorrowing = null;
+	}
+
+	private String getDescription() {
+		return description;
+	}
+
+	private void setDescription(String description) {
+		this.description = description;
 	}
 
 }
