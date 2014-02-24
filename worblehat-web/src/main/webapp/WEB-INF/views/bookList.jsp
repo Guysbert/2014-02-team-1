@@ -17,6 +17,7 @@
 			<th>Edition</th>
 			<th>ISBN</th>
 			<th>Borrower</th>
+			<th>Description</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -28,6 +29,7 @@
 			<td>${book.edition}</td>
 			<td>${book.isbn}</td>
 			<td>${book.currentBorrowing.borrowerEmailAddress}</td>
+			<td>${book.description}</td>
 		</tr>
 	</c:forEach>
 	</tbody>

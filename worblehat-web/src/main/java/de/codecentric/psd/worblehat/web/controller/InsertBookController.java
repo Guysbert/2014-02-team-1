@@ -65,7 +65,7 @@ public class InsertBookController {
 
 			bookFactory.createBook(cmd.getTitle(), cmd.getAuthor(),
 					cmd.getEdition(), cmd.getIsbn(),
-					Integer.parseInt(cmd.getYear()));
+					Integer.parseInt(cmd.getYear()), cmd.getDescription());
 			LOG.debug("new book instance is created: " + cmd.getIsbn());
 
 			List<Book> books = bookRepository.findAllBooks();
@@ -74,5 +74,4 @@ public class InsertBookController {
 			return "/bookList";
 		}
 	}
-
 }

@@ -63,13 +63,14 @@ public class InsertBookControllerTest {
 		cmd.setEdition("2");
 		cmd.setTitle("Test with JUnit");
 		cmd.setYear("1999");
+		cmd.setDescription("Test Description 5");
 		when(mockBindingResult.hasErrors()).thenReturn(false);
 		String path = insertBookController.processSubmit(mockRequest,
 				mockModelMap, cmd, mockBindingResult);
 
 		verify(mockModelMap).put("bookDataFormData", cmd);
 		verify(bookFactory).createBook("Test with JUnit", "Horst Tester", "2",
-				"ISBN-123132-21", 1999);
+				"ISBN-123132-21", 1999, "Test Description 5");
 		assertThat(path, is("/bookList"));
 	}
 }
