@@ -4,7 +4,7 @@
 <%@ page session="false"%>
 <html>
 <head>
-<title>Worblehat Bookmanager</title>
+<title>Worblehat Bookmanager v1.4</title>
 </head>
 <body>
 	<h1 id="welcome_heading">Worblehat Bookmanager</h1>
