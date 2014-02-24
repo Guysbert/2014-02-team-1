@@ -1,10 +1,10 @@
 package de.codecentric.psd.worblehat.web.validator;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -68,7 +68,8 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
 		assertThat(errors.getErrorCount(), is(0));
-		String errorFieldValue = errors.getFieldValue("title").toString();;
+		String errorFieldValue = errors.getFieldValue("title").toString();
+		;
 		assertThat(errorFieldValue, is(title));
 	}
 
@@ -113,7 +114,7 @@ public class ValidateAddBookTest {
 		cmd.setYear(year);
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -122,7 +123,7 @@ public class ValidateAddBookTest {
 		cmd.setYear(year);
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -130,7 +131,7 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		cmd.setIsbn("         ");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -138,7 +139,7 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		cmd.setIsbn(null);
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -148,8 +149,8 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
 		Object value = errors.getFieldValue("isbn");
-		Assert.assertEquals(0, errors.getErrorCount());
-		Assert.assertEquals(isbn13, value);
+		assertEquals(0, errors.getErrorCount());
+		assertEquals(isbn13, value);
 	}
 
 	@Test
@@ -158,7 +159,7 @@ public class ValidateAddBookTest {
 		cmd.setIsbn(isbn13);
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -166,7 +167,7 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		cmd.setAuthor(null);
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -174,7 +175,7 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		cmd.setAuthor("    ");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -182,7 +183,7 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		cmd.setAuthor(null);
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -192,8 +193,8 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
 		Object value = errors.getFieldValue("author");
-		Assert.assertEquals(0, errors.getErrorCount());
-		Assert.assertEquals(title, value);
+		assertEquals(0, errors.getErrorCount());
+		assertEquals(title, value);
 	}
 
 	@Test
@@ -201,7 +202,7 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		cmd.setEdition(null);
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -209,7 +210,7 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		cmd.setEdition("    ");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -217,7 +218,7 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		cmd.setEdition(null);
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test
@@ -227,8 +228,8 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
 		Object value = errors.getFieldValue("edition");
-		Assert.assertEquals(0, errors.getErrorCount());
-		Assert.assertEquals(edition, value);
+		assertEquals(0, errors.getErrorCount());
+		assertEquals(edition, value);
 	}
 
 	@Test
@@ -237,7 +238,7 @@ public class ValidateAddBookTest {
 		cmd.setEdition(edition);
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		assertEquals(1, errors.getErrorCount());
 	}
 
 	@Test(expected = RuntimeException.class)
