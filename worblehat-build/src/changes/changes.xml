@@ -24,5 +24,12 @@
 				Return all borrowed books by one member.
 			</action>
 		</release>
+		
+		<release version="1.5.0" date="2014-02-24"
+			description="Build info, date and book descriptions">
+			<action dev="bene,felix" type="add">
+				WB126: Add build info and build date to home.jsp
+			</action>
+		</release>
 	</body>
 </document>
