@@ -46,14 +46,6 @@ public class ValidateAddBookTest {
 	}
 
 	@Test
-	public void shouldFailForWhitespaceTitle() {
-		Errors errors = new BindException(cmd, "cmdBookdData");
-		cmd.setTitle("    ");
-		validateAddBook.validate((BookDataFormData) cmd, errors);
-		assertThat(errors.getErrorCount(), is(1));
-	}
-
-	@Test
 	public void shouldFailForNullTitle() {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		cmd.setTitle(null);
@@ -68,8 +60,20 @@ public class ValidateAddBookTest {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
 		assertThat(errors.getErrorCount(), is(0));
-		String errorFieldValue = errors.getFieldValue("title").toString();;
+		String errorFieldValue = errors.getFieldValue("title").toString();
+		;
 		assertThat(errorFieldValue, is(title));
+	}
+
+	@Test
+	public void shouldAcceptTitelWithWithespaces() {
+		String title = " Title    ";
+		cmd.setTitle(title);
+		Errors errors = new BindException(cmd, "cmdBookData");
+		validateAddBook.validate((BookDataFormData) cmd, errors);
+		Object value = errors.getFieldValue("title");
+		Assert.assertEquals(0, errors.getErrorCount());
+		Assert.assertEquals(title, value);
 	}
 
 	@Test
@@ -83,9 +87,25 @@ public class ValidateAddBookTest {
 	@Test
 	public void shouldFailForWhiteSpaceYear() {
 		Errors errors = new BindException(cmd, "cmdBookdData");
+		// Note:
+		// it is correct that there is still one error, as
+		// the whitespaces cannot be parsed as an integer
+		// see ValidateAddBook#checkThatYearIsFilledAndValid(Errors,
+		// BookDataFormData)
 		cmd.setYear("     ");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
 		assertThat(errors.getErrorCount(), is(1));
+	}
+
+	@Test
+	public void shouldAcceptYearWithWhitespace() {
+		String year = "   2012   ";
+		Errors errors = new BindException(cmd, "cmdBookdData");
+		cmd.setYear(year);
+		validateAddBook.validate((BookDataFormData) cmd, errors);
+		Object value = errors.getFieldValue("year");
+		Assert.assertEquals(0, errors.getErrorCount());
+		Assert.assertEquals(year, value);
 	}
 
 	@Test
@@ -153,6 +173,17 @@ public class ValidateAddBookTest {
 	}
 
 	@Test
+	public void shouldAcceptISBNWithWithespaces() {
+		String isbn13 = " 90-70002-34-5    ";
+		cmd.setIsbn(isbn13);
+		Errors errors = new BindException(cmd, "cmdBookData");
+		validateAddBook.validate((BookDataFormData) cmd, errors);
+		Object value = errors.getFieldValue("isbn");
+		Assert.assertEquals(0, errors.getErrorCount());
+		Assert.assertEquals(isbn13, value);
+	}
+
+	@Test
 	public void shouldFailForInvalidISBN() {
 		String isbn13 = "978-3492285100-22";
 		cmd.setIsbn(isbn13);
@@ -175,6 +206,17 @@ public class ValidateAddBookTest {
 		cmd.setAuthor("    ");
 		validateAddBook.validate((BookDataFormData) cmd, errors);
 		Assert.assertEquals(1, errors.getErrorCount());
+	}
+
+	@Test
+	public void shouldAccaptWhitespaceAutor() {
+		String author = "  Some Author   ";
+		Errors errors = new BindException(cmd, "cmdBookdData");
+		cmd.setAuthor(author);
+		validateAddBook.validate((BookDataFormData) cmd, errors);
+		Object value = errors.getFieldValue("author");
+		Assert.assertEquals(0, errors.getErrorCount());
+		Assert.assertEquals(author, value);
 	}
 
 	@Test
@@ -205,11 +247,14 @@ public class ValidateAddBookTest {
 	}
 
 	@Test
-	public void shouldFailForWhitespaceEdition() {
+	public void shouldAccaptEditionWithWhitespace() {
+		String edition = " 2 ";
 		Errors errors = new BindException(cmd, "cmdBookdData");
-		cmd.setEdition("    ");
+		cmd.setEdition(edition);
 		validateAddBook.validate((BookDataFormData) cmd, errors);
-		Assert.assertEquals(1, errors.getErrorCount());
+		Object value = errors.getFieldValue("edition");
+		Assert.assertEquals(0, errors.getErrorCount());
+		Assert.assertEquals(edition, value);
 	}
 
 	@Test

@@ -30,20 +30,41 @@ public class ValidateAddBook implements Validator {
 
 		BookDataFormData cmd = (BookDataFormData) target;
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "empty");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "author", "empty");
+		// ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "empty");
+		// ValidationUtils.rejectIfEmptyOrWhitespace(errors, "author", "empty");
 
 		checkThatYearIsFilledAndValid(errors, cmd);
 		checkThatIsbnIsFilledAndValid(errors, cmd);
 		checkThatEditionisFilledAndValid(errors, cmd);
+		checkThatTitleisFilledAndValid(errors, cmd);
+		checkThatAuthorisFilledAndValid(errors, cmd);
+	}
 
+	private void checkThatTitleisFilledAndValid(Errors errors,
+			BookDataFormData cmd) {
+		ValidationUtils.rejectIfEmpty(errors, "title", "empty");
+		if (!errors.hasFieldErrors("title")) {
+			cmd.getTitle().trim();
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "empty");
+		}
+	}
+
+	private void checkThatAuthorisFilledAndValid(Errors errors,
+			BookDataFormData cmd) {
+		ValidationUtils.rejectIfEmpty(errors, "author", "empty");
+		if (!errors.hasFieldErrors("author")) {
+			cmd.getAuthor().trim();
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "author",
+					"author");
+		}
 	}
 
 	private void checkThatEditionisFilledAndValid(Errors errors,
 			BookDataFormData cmd) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "edition", "empty");
+		ValidationUtils.rejectIfEmpty(errors, "edition", "empty");
 		if (!errors.hasFieldErrors("edition")) {
-			if (!StringUtils.isNumeric(cmd.getEdition())) {
+			String edition = cmd.getEdition().trim();
+			if (!StringUtils.isNumeric(edition)) {
 				errors.rejectValue("edition", "notvalid");
 			}
 		}
@@ -51,10 +72,11 @@ public class ValidateAddBook implements Validator {
 
 	private void checkThatIsbnIsFilledAndValid(Errors errors,
 			BookDataFormData cmd) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "isbn", "empty");
+		ValidationUtils.rejectIfEmpty(errors, "isbn", "empty");
 		if (!errors.hasFieldErrors("isbn")) {
+			String isbn = cmd.getIsbn().trim();
 			ISBNValidator isbnValidator = new ISBNValidator();
-			if (!isbnValidator.isValid(cmd.getIsbn())) {
+			if (!isbnValidator.isValid(isbn)) {
 				errors.rejectValue("isbn", "notvalid");
 			}
 		}
@@ -62,11 +84,12 @@ public class ValidateAddBook implements Validator {
 
 	private void checkThatYearIsFilledAndValid(Errors errors,
 			BookDataFormData cmd) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "year", "empty");
+		ValidationUtils.rejectIfEmpty(errors, "year", "empty");
 		if (!errors.hasFieldErrors("year")) {
-			if (!StringUtils.isNumeric(cmd.getYear())) {
+			String year = cmd.getYear().trim();
+			if (!StringUtils.isNumeric(year)) {
 				errors.rejectValue("year", "notvalid");
-			} else if (StringUtils.length(cmd.getYear()) != 4) {
+			} else if (StringUtils.length(year) != 4) {
 				errors.rejectValue("year", "invalid.length");
 			}
 		}

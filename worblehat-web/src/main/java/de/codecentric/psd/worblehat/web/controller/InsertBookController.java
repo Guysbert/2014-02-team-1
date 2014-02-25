@@ -64,7 +64,7 @@ public class InsertBookController {
 		} else {
 
 			bookFactory.createBook(cmd.getTitle(), cmd.getAuthor(),
-					cmd.getEdition(), cmd.getIsbn(),
+					cmd.getEdition(), cmd.getIsbn().trim(),
 					Integer.parseInt(cmd.getYear()));
 			LOG.debug("new book instance is created: " + cmd.getIsbn());
 
