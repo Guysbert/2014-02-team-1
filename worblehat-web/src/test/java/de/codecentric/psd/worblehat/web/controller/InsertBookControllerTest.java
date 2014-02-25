@@ -96,6 +96,7 @@ public class InsertBookControllerTest {
 		verify(mockModelMap).put("bookDataFormData", cmd);
 		verify(bookFactory).createBook("Test with JUnit", "Horst Tester", "2",
 				"ISBN-123132-21", 1999, "Test Description 5");
+		verify(bookRepository).findBooksByISBN(cmd.getIsbn());
 		assertThat(path, is("/insertBooks"));
 	}
 
