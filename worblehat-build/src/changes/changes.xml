@@ -6,6 +6,11 @@
 		<author email="markus.bonsch@codecentric.de">Markus Bonsch</author>
 	</properties>
 	<body>
+		<release version="1.6.0" date="2014-02-25"
+			description="Release with improved functionality">
+			
+		</release>
+	
 		<release version="1.5.0" date="2014-02-24"
 			description="Release with improved functionality">
 			<action issue="WB111" dev="Akira,Andreas" type="add">
