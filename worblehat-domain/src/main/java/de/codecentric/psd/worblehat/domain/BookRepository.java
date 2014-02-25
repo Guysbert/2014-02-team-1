@@ -48,8 +48,8 @@ public class BookRepository {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Book> findBooksByISBN(String isbn) {
-		Query query = em.createQuery("form Book where isbn =? ").setParameter(
-				1, isbn);
+		Query query = em.createQuery("form Book where isbn =? ");
+		query.setParameter(1, isbn);
 		return query.getResultList();
 	}
 
@@ -67,11 +67,13 @@ public class BookRepository {
 	 * @throws IsbnAlreadyUsedException
 	 */
 	public void store(Book book) throws IsbnAlreadyUsedException {
-		if (!em.contains(book)) {
-			em.persist(book);
-		} else {
-			throw new IsbnAlreadyUsedException();
+		List<Book> books = findBooksByISBN(book.getIsbn());
+		for (Book book2 : books) {
+			if (!book2.equals(book)) {
+				throw new IsbnAlreadyUsedException();
+			}
 		}
+		em.persist(book);
 	}
 
 	/**

@@ -9,6 +9,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -45,19 +46,46 @@ public class BookRepositoryTest {
 
 	@Test
 	public void shouldStoreBook() throws IsbnAlreadyUsedException {
-		when(emMock.contains(validAvailableBook)).thenReturn(Boolean.FALSE);
+		when(emMock.createQuery("form Book where isbn =? ")).thenReturn(
+				queryMock);
+		when(
+				queryMock.setParameter(Mockito.isA(int.class),
+						Mockito.isA(Object.class))).thenReturn(queryMock);
+		when(queryMock.getResultList()).thenReturn(Collections.emptyList());
 
 		bookRepository.store(validAvailableBook);
-		verify(emMock).contains(validAvailableBook);
+		verify(emMock).createQuery("form Book where isbn =? ");
+		verify(emMock).persist(validAvailableBook);
+	}
+
+	@Test
+	public void shouldAddDuplicateBooks() throws IsbnAlreadyUsedException {
+		when(emMock.createQuery("form Book where isbn =? ")).thenReturn(
+				queryMock);
+		when(
+				queryMock.setParameter(Mockito.isA(int.class),
+						Mockito.isA(Object.class))).thenReturn(queryMock);
+		when(queryMock.getResultList()).thenReturn(
+				Collections.singletonList(validAvailableBook));
+
+		bookRepository.store(validAvailableBook);
+		verify(emMock).createQuery("form Book where isbn =? ");
 		verify(emMock).persist(validAvailableBook);
 	}
 
 	@Test(expected = IsbnAlreadyUsedException.class)
-	public void shouldThrowExceptionForDuplicateIsbn()
+	public void shouldThrowExceptionForUsedIsbn()
 			throws IsbnAlreadyUsedException {
-		when(emMock.contains(validAvailableBook)).thenReturn(Boolean.TRUE);
+		when(emMock.createQuery("form Book where isbn =? ")).thenReturn(
+				queryMock);
+		when(
+				queryMock.setParameter(Mockito.isA(int.class),
+						Mockito.isA(Object.class))).thenReturn(queryMock);
+		when(queryMock.getResultList()).thenReturn(
+				Collections.singletonList(validAvailableBook));
 
-		bookRepository.store(validAvailableBook);
+		Book book = new Book("", "", "", validAvailableBook.getIsbn(), 1999, "");
+		bookRepository.store(book);
 	}
 
 	@Test
