@@ -44,10 +44,20 @@ public class BookRepositoryTest {
 	}
 
 	@Test
-	public void shouldStoreBook() {
+	public void shouldStoreBook() throws IsbnAlreadyUsedException {
+		when(emMock.contains(validAvailableBook)).thenReturn(Boolean.FALSE);
 
 		bookRepository.store(validAvailableBook);
+		verify(emMock).contains(validAvailableBook);
 		verify(emMock).persist(validAvailableBook);
+	}
+
+	@Test(expected = IsbnAlreadyUsedException.class)
+	public void shouldThrowExceptionForDuplicateIsbn()
+			throws IsbnAlreadyUsedException {
+		when(emMock.contains(validAvailableBook)).thenReturn(Boolean.TRUE);
+
+		bookRepository.store(validAvailableBook);
 	}
 
 	@Test

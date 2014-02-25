@@ -64,9 +64,14 @@ public class BookRepository {
 	 * 
 	 * @param book
 	 *            the book to persist
+	 * @throws IsbnAlreadyUsedException
 	 */
-	public void store(Book book) {
-		em.persist(book);
+	public void store(Book book) throws IsbnAlreadyUsedException {
+		if (!em.contains(book)) {
+			em.persist(book);
+		} else {
+			throw new IsbnAlreadyUsedException();
+		}
 	}
 
 	/**

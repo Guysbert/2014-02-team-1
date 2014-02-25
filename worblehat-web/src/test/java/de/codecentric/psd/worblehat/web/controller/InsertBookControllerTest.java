@@ -19,6 +19,7 @@ import org.springframework.validation.BindingResult;
 
 import de.codecentric.psd.worblehat.domain.BookFactory;
 import de.codecentric.psd.worblehat.domain.BookRepository;
+import de.codecentric.psd.worblehat.domain.IsbnAlreadyUsedException;
 import de.codecentric.psd.worblehat.web.command.BookDataFormData;
 
 public class InsertBookControllerTest {
@@ -56,7 +57,7 @@ public class InsertBookControllerTest {
 	}
 
 	@Test
-	public void shouldAddBook() {
+	public void shouldAddBook() throws IsbnAlreadyUsedException {
 		BookDataFormData cmd = new BookDataFormData();
 		cmd.setIsbn("ISBN-123132-21");
 		cmd.setAuthor("Horst Tester");
