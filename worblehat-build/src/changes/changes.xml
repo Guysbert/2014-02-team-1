@@ -15,14 +15,12 @@
 				Add build info and build date to home.jsp
 			</action>
 		</release>
+		
 		<release version="1.4.0" date="2011-04-06"
 			description="Second Release with much improved functionality">
 			<action dev="betaworblers" type="update">
 				Borrowing books.
 			</action>
-		</release>
-		<release version="1.4.0" date="2011-04-06"
-			description="Release with much improved functionality">
 			<action dev="betaworblers" type="update">
 				Return all borrowed books by one member.
 			</action>
