@@ -26,6 +26,10 @@
 		<form:errors path="year" />
 
 		<br />
+			Description:<form:input id="description" path="description" />
+		<form:errors path="description" />
+
+		<br />
 		<input type="submit" id="addBook" value="Add Book" />
 		<hr/>
 		<a href="<spring:url value="/" htmlEscape="true" />">Back to Home</a>
