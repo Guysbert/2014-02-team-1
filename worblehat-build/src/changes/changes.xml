@@ -26,12 +26,12 @@
 		</release>
 		
 		<release version="1.5.0" date="2014-02-24"
-			description="Release with improve functionality">
-			<action dev="betaworblers" type="update">
+			description="Release with improved functionality">
+			<action issue="WB111" dev="Akira,Andreas" type="update">
 				Added Description Field to book.
 			</action>
-			<action dev="bene,felix" type="add">
-				WB126: Add build info and build date to home.jsp
+			<action issue="WB126" dev="Bene,Felix" type="add">
+				Add build info and build date to home.jsp
 			</action>
 		</release>
 	</body>
