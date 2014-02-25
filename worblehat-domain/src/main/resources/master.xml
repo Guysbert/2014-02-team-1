@@ -5,5 +5,4 @@
 
 	<include file="de/codecentric/psd/worblehat/domain/1.4.0-changelog.xml" />
 	<include file="de/codecentric/psd/worblehat/domain/1.5.0-changelog.xml" />
-	<include file="de/codecentric/psd/worblehat/domain/1.6.0-changelog.xml" />
 </databaseChangeLog> 
