@@ -8,8 +8,8 @@
 	<body>
 		<release version="1.5.0" date="2014-02-24"
 			description="Release with improved functionality">
-			<action issue="WB111" dev="Akira,Andreas" type="update">
-				Added Description Field to book.
+			<action issue="WB111" dev="Akira,Andreas" type="add">
+				Add Description Field to book.
 			</action>
 			<action issue="WB126" dev="Bene,Felix" type="add">
 				Add build info and build date to home.jsp
