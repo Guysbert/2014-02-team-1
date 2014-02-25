@@ -8,7 +8,9 @@
 	<body>
 		<release version="1.6.0" date="2014-02-25"
 			description="Release with improved functionality">
-			
+			<action issue="WB117" dev="Andreas,Felix" type="add">
+				Add ISBN 13 Validation.
+			</action>
 		</release>
 	
 		<release version="1.5.0" date="2014-02-24"

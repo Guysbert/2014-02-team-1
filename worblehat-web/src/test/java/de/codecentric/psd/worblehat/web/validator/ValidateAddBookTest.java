@@ -154,6 +154,17 @@ public class ValidateAddBookTest {
 	}
 
 	@Test
+	public void shouldValidateISBN13() {
+		String isbn13 = "978-3-455-50236-7";
+		cmd.setIsbn(isbn13);
+		Errors errors = new BindException(cmd, "cmdBookdData");
+		validateAddBook.validate((BookDataFormData) cmd, errors);
+		Object value = errors.getFieldValue("isbn");
+		assertEquals(0, errors.getErrorCount());
+		assertEquals(isbn13, value);
+	}
+
+	@Test
 	public void shouldFailForInvalidISBN() {
 		String isbn13 = "978-3492285100-22";
 		cmd.setIsbn(isbn13);

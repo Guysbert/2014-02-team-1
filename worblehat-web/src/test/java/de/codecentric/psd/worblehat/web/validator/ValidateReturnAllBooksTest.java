@@ -12,7 +12,7 @@ import de.codecentric.psd.worblehat.web.command.ReturnAllBooksFormData;
 
 public class ValidateReturnAllBooksTest {
 
-	private static final String VALID_EMAIL = "valid.user@worblehat.local";
+	private static final String VALID_EMAIL = "valid.user@worblehat.de";
 	private ValidateReturnAllBooks validateReturnAllBooks;
 	private ReturnAllBooksFormData cmd;
 

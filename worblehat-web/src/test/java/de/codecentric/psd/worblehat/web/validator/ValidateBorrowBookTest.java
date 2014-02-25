@@ -14,11 +14,11 @@ import de.codecentric.psd.worblehat.web.command.BookBorrowFormData;
 
 public class ValidateBorrowBookTest {
 
-	private static final String INVALID_ISBN = "978-3492285100-22";
-	private static final String VALID_ISBN = "90-70002-34-5";
-	private static final String VALID_EMAIL = "valid.user@worblehat.local";
+	private static final String INVALID_ISBN = "978-3492285100-22-123";
+	private static final String VALID_ISBN = "978-3-455-50236-7";
+	private static final String VALID_EMAIL = "valid.user@worblehat.de";
 
-	private ValidateBorrowBook validateAddBook;
+	private ValidateBorrowBook validateBorrowBook;
 
 	private BookBorrowFormData cmd = new BookBorrowFormData(VALID_ISBN,
 			VALID_EMAIL);
@@ -26,7 +26,7 @@ public class ValidateBorrowBookTest {
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		this.validateAddBook = new ValidateBorrowBook();
+		this.validateBorrowBook = new ValidateBorrowBook();
 	}
 
 	@Test
@@ -43,12 +43,23 @@ public class ValidateBorrowBookTest {
 
 	@Test
 	public void shouldValidateISBN10() {
-		String isbn13 = "90-70002-34-5";
-		cmd.setIsbn(isbn13);
+		String isbn10 = "90-70002-34-5";
+		cmd.setIsbn(isbn10);
 		Errors errors = new BindException(cmd, "bookBorrowCmd");
-		validateAddBook.validate(cmd, errors);
+		validateBorrowBook.validate(cmd, errors);
 		Object value = errors.getFieldValue("isbn");
 		assertThat(errors.getErrorCount(), is(0));
+		assertEquals(isbn10, value);
+	}
+
+	@Test
+	public void shouldValidateISBN13() {
+		String isbn13 = "978-3-455-50236-7";
+		cmd.setIsbn(isbn13);
+		Errors errors = new BindException(cmd, "bookBorrowCmd");
+		validateBorrowBook.validate(cmd, errors);
+		Object value = errors.getFieldValue("isbn");
+		assertEquals(0, errors.getErrorCount());
 		assertEquals(isbn13, value);
 	}
 
@@ -73,7 +84,7 @@ public class ValidateBorrowBookTest {
 
 	private void validateForOneError() {
 		Errors errors = new BindException(cmd, "cmdBookdData");
-		validateAddBook.validate(cmd, errors);
+		validateBorrowBook.validate(cmd, errors);
 		assertThat(errors.getErrorCount(), is(1));
 	}
 
