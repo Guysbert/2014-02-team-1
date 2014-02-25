@@ -9,6 +9,34 @@
 <body>
 	<h1>Add Book</h1>
 
+	<c:forEach items="${books}" begin="0" end="1" var="book">
+	ISBN is already in use. If you want to add another copy of this book, all fields have to be the same.
+		<table>
+	<thead>  
+		<tr>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Year</th>
+			<th>Edition</th>
+			<th>ISBN</th>
+			<th>Borrower</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr>
+				<td>${book.title}</td>
+				<td>${book.author}</td>
+				<td>${book.year}</td>
+				<td>${book.edition}</td>
+				<td>${book.isbn}</td>
+				<td>${book.currentBorrowing.borrowerEmailAddress}</td>
+				<td>${book.description}</td>
+			</tr>
+				</tbody>
+	</table>
+	</c:forEach>
+
 	<form:form commandName="bookDataFormData" method="POST">
             Title:<form:input id="title" path="title" />
 		<form:errors path="title" />

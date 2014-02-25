@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +33,8 @@ public class Book implements Serializable {
 	private String title;
 	private String author;
 	private String edition;
+
+	@Column(unique = true, nullable = false)
 	private String isbn;
 	private int year;
 	private String description;

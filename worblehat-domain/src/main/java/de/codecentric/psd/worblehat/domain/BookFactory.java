@@ -22,7 +22,8 @@ public class BookFactory {
 	};
 
 	public Book createBook(String title, String author, String edition,
-			String isbn, int year, String description) {
+			String isbn, int year, String description)
+			throws IsbnAlreadyUsedException {
 		Book book = new Book(title, author, edition, isbn, year, description);
 		bookRepository.store(book);
 		return book;

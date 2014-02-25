@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import de.codecentric.psd.worblehat.domain.Book;
 import de.codecentric.psd.worblehat.domain.BookFactory;
 import de.codecentric.psd.worblehat.domain.BookRepository;
+import de.codecentric.psd.worblehat.domain.IsbnAlreadyUsedException;
 import de.codecentric.psd.worblehat.web.command.BookDataFormData;
 import de.codecentric.psd.worblehat.web.validator.ValidateAddBook;
 
@@ -54,7 +55,8 @@ public class InsertBookController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String processSubmit(HttpServletRequest request, ModelMap modelMap,
 			@ModelAttribute("bookDataFormData") BookDataFormData cmd,
-			BindingResult result) {
+			BindingResult result) throws NumberFormatException,
+			IsbnAlreadyUsedException {
 
 		modelMap.put("bookDataFormData", cmd);
 		validateAddBook.validate(cmd, result);
@@ -63,9 +65,16 @@ public class InsertBookController {
 			return "/insertBooks";
 		} else {
 
-			bookFactory.createBook(cmd.getTitle(), cmd.getAuthor(),
-					cmd.getEdition(), cmd.getIsbn(),
-					Integer.parseInt(cmd.getYear()), cmd.getDescription());
+			try {
+				bookFactory.createBook(cmd.getTitle(), cmd.getAuthor(),
+						cmd.getEdition(), cmd.getIsbn(),
+						Integer.parseInt(cmd.getYear()), cmd.getDescription());
+			} catch (IsbnAlreadyUsedException e) {
+				List<Book> books = bookRepository
+						.findBooksByISBN(cmd.getIsbn());
+				modelMap.addAttribute("books", books);
+				return "/insertBooks";
+			}
 			LOG.debug("new book instance is created: " + cmd.getIsbn());
 
 			List<Book> books = bookRepository.findAllBooks();
