@@ -6,6 +6,15 @@
 		<author email="markus.bonsch@codecentric.de">Markus Bonsch</author>
 	</properties>
 	<body>
+	
+		<release version="1.7.0" date="2014-02-25"
+			description="Release with improved functionality">
+			<action issue="WB9004" dev="Felix, Andreas" type="add">
+				Bugfix: Added description field to AddBook form
+			</action>
+		</release>
+	
+	
 		<release version="1.6.0" date="2014-02-25"
 			description="Release with improved functionality">
 			<action issue="WB127" dev="Akira,Benedikt" type="add">
