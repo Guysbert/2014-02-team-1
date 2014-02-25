@@ -65,9 +65,13 @@ public class InsertBookController {
 			return "/insertBooks";
 		} else {
 
-			bookFactory.createBook(cmd.getTitle(), cmd.getAuthor(),
-					cmd.getEdition(), cmd.getIsbn(),
-					Integer.parseInt(cmd.getYear()), cmd.getDescription());
+			try {
+				bookFactory.createBook(cmd.getTitle(), cmd.getAuthor(),
+						cmd.getEdition(), cmd.getIsbn(),
+						Integer.parseInt(cmd.getYear()), cmd.getDescription());
+			} catch (IsbnAlreadyUsedException e) {
+				return "/insertBooks";
+			}
 			LOG.debug("new book instance is created: " + cmd.getIsbn());
 
 			List<Book> books = bookRepository.findAllBooks();

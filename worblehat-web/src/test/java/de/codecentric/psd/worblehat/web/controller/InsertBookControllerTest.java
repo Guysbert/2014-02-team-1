@@ -4,6 +4,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -74,4 +75,28 @@ public class InsertBookControllerTest {
 				"ISBN-123132-21", 1999, "Test Description 5");
 		assertThat(path, is("/bookList"));
 	}
+
+	@Test
+	public void shouldHandleIsbnAlreadyUsedException()
+			throws IsbnAlreadyUsedException {
+		BookDataFormData cmd = new BookDataFormData();
+		cmd.setIsbn("ISBN-123132-21");
+		cmd.setAuthor("Horst Tester");
+		cmd.setEdition("2");
+		cmd.setTitle("Test with JUnit");
+		cmd.setYear("1999");
+		cmd.setDescription("Test Description 5");
+		when(mockBindingResult.hasErrors()).thenReturn(false);
+		doThrow(new IsbnAlreadyUsedException()).when(bookFactory).createBook(
+				cmd.getTitle(), cmd.getAuthor(), cmd.getEdition(),
+				cmd.getIsbn(), 1999, cmd.getDescription());
+		String path = insertBookController.processSubmit(mockRequest,
+				mockModelMap, cmd, mockBindingResult);
+
+		verify(mockModelMap).put("bookDataFormData", cmd);
+		verify(bookFactory).createBook("Test with JUnit", "Horst Tester", "2",
+				"ISBN-123132-21", 1999, "Test Description 5");
+		assertThat(path, is("/insertBooks"));
+	}
+
 }
