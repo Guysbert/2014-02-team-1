@@ -48,13 +48,13 @@ public class BookRepository {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Book> findBooksByISBN(String isbn) {
-		Query query = em.createQuery("form Book where isbn =? ");
-		query.setParameter(1, isbn);
+		Query query = em.createQuery("from Book where isbn = ?");
+		query = query.setParameter(1, isbn);
 		return query.getResultList();
 	}
 
 	public Book findBookByUserAndISBN(String email, String isbn) {
-		Query query = em.createQuery("form Book where isbn =? and email= ?")
+		Query query = em.createQuery("from Book where isbn =? and email= ?")
 				.setParameter(1, isbn).setParameter(2, email);
 		return (Book) query.getSingleResult();
 	}
