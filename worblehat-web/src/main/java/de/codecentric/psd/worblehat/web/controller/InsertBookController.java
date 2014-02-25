@@ -70,6 +70,9 @@ public class InsertBookController {
 						cmd.getEdition(), cmd.getIsbn(),
 						Integer.parseInt(cmd.getYear()), cmd.getDescription());
 			} catch (IsbnAlreadyUsedException e) {
+				List<Book> books = bookRepository
+						.findBooksByISBN(cmd.getIsbn());
+				modelMap.addAttribute("books", books);
 				return "/insertBooks";
 			}
 			LOG.debug("new book instance is created: " + cmd.getIsbn());

@@ -9,6 +9,18 @@
 <body>
 	<h1>Add Book</h1>
 
+	<c:forEach items="${books}" var="book">
+			<tr>
+				<td>${book.title}</td>
+				<td>${book.author}</td>
+				<td>${book.year}</td>
+				<td>${book.edition}</td>
+				<td>${book.isbn}</td>
+				<td>${book.currentBorrowing.borrowerEmailAddress}</td>
+				<td>${book.description}</td>
+			</tr>
+	</c:forEach>
+
 	<form:form commandName="bookDataFormData" method="POST">
             Title:<form:input id="title" path="title" />
 		<form:errors path="title" />
