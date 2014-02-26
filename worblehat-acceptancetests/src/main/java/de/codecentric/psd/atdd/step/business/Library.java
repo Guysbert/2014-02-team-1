@@ -63,6 +63,14 @@ public class Library {
 		createListOfBorrowedBooks(user, isbns);
 	}
 
+	@Given("a library with one book with isbn <isbn1>")
+	public void createLibraryWithOneBook(@Named("isbn1") String isbn)
+			throws SQLException {
+		emptyLibrary();
+		database.execute("INSERT INTO Book(title,author,edition,isbn,year) VALUES "
+				+ "('Title', 'Author', '1', '" + isbn + "', 2011)");
+	}
+
 	private List<String> getListOfItems(String isbns) {
 		return Arrays.asList(isbns.split(" "));
 	}

@@ -12,6 +12,9 @@
 			<action issue="WB9004" dev="Felix, Andreas" type="add">
 				Bugfix: Added description field to AddBook form
 			</action>
+			<action issue="WB9002" dev="Akira, Andreas" type="add">
+				Bugfix: Now you can add duplicate Books
+			</action>
 		</release>
 	
 	

@@ -72,6 +72,15 @@ public class BookRepositoryTest {
 		verify(emMock).persist(validAvailableBook);
 	}
 
+	@Test
+	public void shouldIdentifyIdenticBooks() {
+		Book newBook = new Book("MyTitle", "MyAuthor", "2007",
+				"ISBN-123132-21", 2009, "Test Description 1");
+		assertThat(bookRepository.areSameBook(validAvailableBook, newBook),
+				is(true));
+
+	}
+
 	@Test(expected = IsbnAlreadyUsedException.class)
 	public void shouldThrowExceptionForUsedIsbn()
 			throws IsbnAlreadyUsedException {
