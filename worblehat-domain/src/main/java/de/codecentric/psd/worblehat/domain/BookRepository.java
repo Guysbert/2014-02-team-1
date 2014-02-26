@@ -70,10 +70,23 @@ public class BookRepository {
 		List<Book> books = findBooksByISBN(book.getIsbn());
 		for (Book book2 : books) {
 			if (!book2.equals(book)) {
-				throw new IsbnAlreadyUsedException();
+				if (!areSameBook(book, book2))
+					throw new IsbnAlreadyUsedException();
 			}
 		}
 		em.persist(book);
+	}
+
+	public boolean areSameBook(Book book1, Book book2) {
+		if (book1.getTitle().equals(book2.getTitle())
+				&& book1.getAuthor().equals(book2.getAuthor())
+				&& book1.getIsbn().equals(book2.getIsbn())
+				&& book1.getYear() == book2.getYear()
+				&& book1.getEdition().equals(book2.getEdition())
+				&& book1.getDescription().equals(book2.getDescription())) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

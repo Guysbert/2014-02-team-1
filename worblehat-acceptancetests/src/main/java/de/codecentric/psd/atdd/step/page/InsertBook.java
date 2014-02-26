@@ -48,20 +48,31 @@ public class InsertBook {
 		submitForm();
 	}
 
+	@When("adding a book with the same ISBN <isbn2>")
+	public void addABookWithISBN2(@Named("isbn2") String isbn) {
+		openInsertBooksPage();
+		fillInsertBookForm("Title", "1", isbn, "Author", "2011");
+		submitForm();
+	}
+
 	// *****************
 	// *** T H E N *****
 	// *****************
 
-
 	@Then("the page contains error message <message>")
-	public void thenThePageContainsErrorMessagemessage(@Named("message") String message){
+	public void thenThePageContainsErrorMessagemessage(
+			@Named("message") String message) {
 		assertThat(driver.getPageSource(), containsString(message));
 	}
 
-	// *****************
-	// *** U T I L ***** 
-	// *****************
+	@Then("the progam should accept a book where <isbn1> equals <isbn2>")
+	public void accept(@Named("message") String message) {
+		// TODO: implement Acceptance Test
+	}
 
+	// *****************
+	// *** U T I L *****
+	// *****************
 
 	private void setTitle(String titel) {
 		typeIntoField("title", titel);
