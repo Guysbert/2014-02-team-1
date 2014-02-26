@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -92,14 +93,8 @@ public class BookRepository {
 
 	private boolean descriptionIsEqualOrEmptyAndNull(String description1,
 			String description2) {
-		if ((description1 == null && description2.equals(""))
-				|| description1.equals("") && description2 == null
-				|| description1 == null && description2 == null
-				|| description1.equals(description2)) {
-			return true;
-		} else
-			return false;
-
+		return (StringUtils.isEmpty(description1) && StringUtils
+				.isEmpty(description2)) || description1.equals(description2);
 	}
 
 	/**
