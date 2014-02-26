@@ -93,7 +93,8 @@ public class Library {
 
 	@Then("the book <isbn> is not available for borrowing anymore")
 	public void shouldNotBeAvailableForBorrowing(@Named("isbn") String isbn)
-			throws SQLException {
+			throws Exception {
+		TimeUnit.SECONDS.sleep(1);
 		database.shouldReturnNothing("SELECT * FROM Book WHERE isbn = '" + isbn
 				+ "' AND currentBorrowing_id is null");
 	}
