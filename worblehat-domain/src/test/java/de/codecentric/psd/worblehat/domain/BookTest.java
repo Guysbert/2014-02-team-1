@@ -1,5 +1,6 @@
 package de.codecentric.psd.worblehat.domain;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
@@ -25,4 +26,10 @@ public class BookTest {
 		book.borrow("borrower@codecentric.local");
 	}
 
+	@Test
+	public void shouldStripDashesFromISBN() {
+		Book aBook = new Book("Title", "author", "2", "12-34-45", 2002,
+				"Test Description 3");
+		assertEquals(aBook.getIsbn(), "123445");
+	}
 }
