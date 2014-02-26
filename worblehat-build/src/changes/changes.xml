@@ -7,12 +7,15 @@
 	</properties>
 	<body>
 	
-		<release version="1.7.0" date="2014-02-25"
-			description="Release with improved functionality">
-			<action issue="WB9004" dev="Felix, Andreas" type="add">
+		<release version="1.6.1" date="2014-02-26"
+			description="Maintainance release">
+			<action issue="WB8001" dev="Felix, Benedikt" type="fix">
+				Fix failing acceptance tests
+			</action>
+			<action issue="WB9004" dev="Felix, Andreas" type="fix">
 				Bugfix: Added description field to AddBook form
 			</action>
-			<action issue="WB9002" dev="Akira, Andreas" type="add">
+			<action issue="WB9002" dev="Akira, Andreas" type="fix">
 				Bugfix: Now you can add duplicate Books
 			</action>
 		</release>
