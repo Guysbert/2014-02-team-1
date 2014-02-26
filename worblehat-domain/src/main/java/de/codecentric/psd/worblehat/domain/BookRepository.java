@@ -83,10 +83,23 @@ public class BookRepository {
 				&& book1.getIsbn().equals(book2.getIsbn())
 				&& book1.getYear() == book2.getYear()
 				&& book1.getEdition().equals(book2.getEdition())
-				&& book1.getDescription().equals(book2.getDescription())) {
+				&& descriptionIsEqualOrEmptyAndNull(book1.getDescription(),
+						book2.getDescription())) {
 			return true;
 		}
 		return false;
+	}
+
+	private boolean descriptionIsEqualOrEmptyAndNull(String description1,
+			String description2) {
+		if ((description1 == null && description2.equals(""))
+				|| description1.equals("") && description2 == null
+				|| description1 == null && description2 == null
+				|| description1.equals(description2)) {
+			return true;
+		} else
+			return false;
+
 	}
 
 	/**

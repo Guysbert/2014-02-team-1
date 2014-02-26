@@ -7,6 +7,13 @@
 	</properties>
 	<body>
 	
+			<release version="1.6.2" date="2014-02-26"
+			description="Maintainance release">
+			<action issue="WB9010" dev="Akira, Andreas" type="fix">
+				Bugfix: Now you can add duplicate Books if an existing book is borrowed
+			</action>
+		</release>
+		
 		<release version="1.6.1" date="2014-02-26"
 			description="Maintainance release">
 			<action issue="WB8001" dev="Felix, Benedikt" type="fix">

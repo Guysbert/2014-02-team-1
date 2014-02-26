@@ -81,6 +81,16 @@ public class BookRepositoryTest {
 
 	}
 
+	@Test
+	public void shouldIdentifyIdenticBookswithNullDescription() {
+		Book newBook = new Book("MyTitle", "MyAuthor", "2007",
+				"ISBN-123132-21", 2009, null);
+		Book newBook2 = new Book("MyTitle", "MyAuthor", "2007",
+				"ISBN-123132-21", 2009, "");
+		assertThat(bookRepository.areSameBook(newBook, newBook2), is(true));
+
+	}
+
 	@Test(expected = IsbnAlreadyUsedException.class)
 	public void shouldThrowExceptionForUsedIsbn()
 			throws IsbnAlreadyUsedException {
