@@ -69,9 +69,13 @@ public class Book implements Serializable {
 		this.title = title;
 		this.author = author;
 		this.edition = edition;
-		this.isbn = isbn;
+		this.isbn = removeDashesFromISBN(isbn);
 		this.year = year;
 		this.description = description;
+	}
+
+	private String removeDashesFromISBN(String ISBNwithDashes) {
+		return ISBNwithDashes.replaceAll("-", "");
 	}
 
 	public long getId() {

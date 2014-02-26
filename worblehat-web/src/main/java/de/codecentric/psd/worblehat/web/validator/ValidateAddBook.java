@@ -54,7 +54,9 @@ public class ValidateAddBook implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "isbn", "empty");
 		if (!errors.hasFieldErrors("isbn")) {
 			ISBNValidator isbnValidator = new ISBNValidator();
-			if (!isbnValidator.isValid(cmd.getIsbn())) {
+			String isbnWithDashes = cmd.getIsbn();
+			String isbnWithoutDashes = isbnWithDashes.replaceAll("-", "");
+			if (!isbnValidator.isValid(isbnWithoutDashes)) {
 				errors.rejectValue("isbn", "notvalid");
 			}
 		}

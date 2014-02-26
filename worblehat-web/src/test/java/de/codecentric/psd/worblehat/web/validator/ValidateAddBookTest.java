@@ -174,6 +174,15 @@ public class ValidateAddBookTest {
 	}
 
 	@Test
+	public void shouldIgnoreDashesInISBNForValidation() {
+		String isbn13 = "9-78-3-455-50-23-6-7";
+		cmd.setIsbn(isbn13);
+		Errors errors = new BindException(cmd, "cmdBookdData");
+		validateAddBook.validate((BookDataFormData) cmd, errors);
+		assertEquals(0, errors.getErrorCount());
+	}
+
+	@Test
 	public void shouldFailForEmptyAutor() {
 		Errors errors = new BindException(cmd, "cmdBookdData");
 		cmd.setAuthor(null);
