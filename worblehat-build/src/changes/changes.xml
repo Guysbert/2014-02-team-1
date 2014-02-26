@@ -10,7 +10,13 @@
 			<release version="1.6.2" date="2014-02-26"
 			description="Maintainance release">
 			<action issue="WB9010" dev="Akira, Andreas" type="fix">
-				Bugfix: Now you can add duplicate Books if an existing book is borrowed
+				Now you can add duplicate Books if an existing book is borrowed
+			</action>
+			<action issue="WB9005" dev="Akira, Andreas" type="fix">
+				You can rent more than one copy of a book
+			</action>
+			<action issue="WB9003" dev="Akira, Andreas" type="fix">
+				ISBN Numbers with dashes are now correctly parsed
 			</action>
 		</release>
 		
@@ -20,10 +26,10 @@
 				Fix failing acceptance tests
 			</action>
 			<action issue="WB9004" dev="Felix, Andreas" type="fix">
-				Bugfix: Added description field to AddBook form
+				Added description field to AddBook form
 			</action>
 			<action issue="WB9002" dev="Akira, Andreas" type="fix">
-				Bugfix: Now you can add duplicate Books
+				Now you can add duplicate Books
 			</action>
 		</release>
 	
